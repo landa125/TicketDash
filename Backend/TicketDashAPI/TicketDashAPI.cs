@@ -1,6 +1,6 @@
 namespace TicketDashAPI;
 
-public class WeatherForecast
+public class TicketDashAPI
 {
     public DateTime Date { get; set; }
 

@@ -4,21 +4,20 @@ namespace TicketDashAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class TicketDashController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+    private ITicketBL _userBL;
+    private IMemoryCache _memoryCache;
 
-    private readonly ILogger<WeatherForecastController> _logger;
-
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public TicketDashController(ITicketDashBL p_ticketBL, IMemoryCache p_memorycache)
     {
-        _logger = logger;
+        _ticketBL = p_ticketBL;
+        _memoryCache = p_memorycache;
+
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
+
+    [HttpGet(Name = "GetAllTickets")]
     public IEnumerable<WeatherForecast> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
